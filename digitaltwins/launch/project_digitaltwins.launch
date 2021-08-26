@@ -1,0 +1,4 @@
+<launch>
+  <include file="$(find ur_e_gazebo)/launch/ur10e.launch">
+  </include>
+</launch>

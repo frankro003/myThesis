@@ -90,6 +90,8 @@
       </xacro:cylinder_inertial>
     </link>
 
+
+
     <joint name="${prefix}shoulder_pan_joint" type="revolute">
       <parent link="${prefix}base_link" />
       <child link = "${prefix}shoulder_link" />

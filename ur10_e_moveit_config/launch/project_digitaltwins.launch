@@ -1,0 +1,29 @@
+<launch>
+
+  <arg name="debug" default="false" />
+
+<!-- roslaunch rosbirde websocket setver for comunication unity3D -->
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
+
+
+<!-- Launch gazebo ur10e-->
+  <include file="$(find ur_e_gazebo)/launch/ur10e.launch"/>
+
+<!-- Launch moveit configuration-->
+  <include file="$(find ur5_moveit_config)/launch/ur5_moveit_planning_execution.launch">
+  <arg name="sim" value="true"/>
+  </include>
+
+
+ <!--Launch moveit rviz  -->
+  <include file="$(find ur10_e_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="config" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+
+<node name="SetPosition" pkg="digitalTwins_topic" type="SetPosition.py" respawn="true" />
+
+<!-- Launch servo node for jog-->
+  <include file="$(find moveit_servo)/launch/spacenav_cpp.launch"/>
+</launch>

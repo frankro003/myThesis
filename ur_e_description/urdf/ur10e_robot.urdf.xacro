@@ -8,15 +8,31 @@
   <!-- ur10e -->
   <xacro:include filename="$(find ur_e_description)/urdf/ur10e.urdf.xacro" />
 
+  
   <!-- arm -->
   <xacro:ur10e_robot prefix="" joint_limited="false"/>
 
   <link name="world" />
-
+  
   <joint name="world_joint" type="fixed">
     <parent link="world" />
     <child link = "base_link" />
-    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    <origin xyz="0.0 0.0 1.27" rpy="1.571 3.141 1.571" />
   </joint>
+
+<!-- arm -->
+      <link name="towerrod">
+      <visual>
+        <geometry>
+          <cylinder length="0.6" radius="0.2"/>
+        </geometry>
+         <origin rpy="0 0 0" xyz="0 0 0.5"/>
+      </visual>
+    </link>
+
+    <joint name="base_to_right_leg" type="fixed">
+      <parent link="world"/>
+      <child link="towerrod"/>
+    </joint>
 
 </robot>
